@@ -3,8 +3,7 @@ output: github_document
 ---
 
 
-# dpukarchive: a package for working with the data.police.uk archive
-
+# dpukarchive
 <!-- badges: start -->
 <!-- badges: end -->
 
@@ -17,7 +16,7 @@ Plan: to try develop a package that makes interacting with the UK police data ar
  
 ## Understanding what data is present in the archive
 
-```{r availability-plot, echo = F, message = F, dev='png', dpi = 500, dev.args = list(bg = 'transparent')}
+```{r availability-plot, echo = F, message = F, dev='png', dpi = 1000, dev.args = list(bg = 'transparent')}
 library(dplyr)
 library(magrittr)
 library(ggplot2)
@@ -91,13 +90,14 @@ archive_contents %>%
         plot.background = element_rect(fill='transparent'),
         panel.background = element_rect(fill='transparent'),
         legend.background =  element_rect(fill='transparent'),
-        axis.line.x.bottom = element_line(colour = "white"),
+        axis.ticks = element_line(colour = "white"),
+        # axis.line.x.bottom = element_line(colour = "white"),
         axis.text.y = element_text(size = 7, colour = "white"),
         axis.text.x = element_text(size = 9, colour = "white"),
-        legend.position = c(0.64, -0.223),
+        legend.position = c(0.64, -0.225),
         legend.title = element_blank(),
         legend.key.size = unit(0.5, "lines"),
-        legend.text = element_text(size = 12,
+        legend.text = element_text(size = 11,
                                    colour = "white"),
         # panel.background = element_rect(fill = NA, color = "black"),
         plot.margin = unit(c(1,1,1,1), "lines"),
@@ -106,7 +106,7 @@ archive_contents %>%
         #                             size=rel(1)),
         plot.caption = element_text(hjust = 0,
                                     vjust = 0,
-                                    size = 12,
+                                    size = 11,
                                     colour = "white"),
         panel.spacing = unit(0.1,'lines')) +   #only v small spaces between facets
   guides(fill=guide_legend(nrow = 1)) +

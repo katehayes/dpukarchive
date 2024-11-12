@@ -1,5 +1,5 @@
 
-# dpukarchive: a package for working with the data.police.uk archive
+# dpukarchive
 
 <!-- badges: start -->
 <!-- badges: end -->
