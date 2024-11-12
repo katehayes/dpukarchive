@@ -7,7 +7,7 @@ output: github_document
 <!-- badges: start -->
 <!-- badges: end -->
 
-[data.police.uk](https://data.police.uk) makes lots of police data available for public use. It offers an API - but, on exploration, it seems like the API only gives access to data back as far as 2021. The site also has an ['archive' page](https://data.police.uk/data/archive/) - the archive hosts data from Dec 2010 onwards. <br>
+Lots of police data is made available for public use at [data.police.uk](https://data.police.uk). The site offers an API - but, on exploration, it seems like the API only gives access to data back as far as 2021. The site also has an ['archive' page](https://data.police.uk/data/archive/) - the archive hosts data from Dec 2010 onwards. <br>
 
 However, the archive is difficult to use. It hosts a number of zipped folders, available for download. Each zipped folder contains a number of subfolders, which contain one month's worth of data. For every month, there should be one csv for each police force, for each data series (crime, outcome, stop & search data), though some are missing. In sum, there are lots of files inside folders inside folders, and to extract the particular data files you want to use presently involves downloading and manually searching through many files you don't want. <br>
 
@@ -59,7 +59,7 @@ archive_contents %>%
   # mutate(police_label = ifelse(series == "street", name, paste0(name, 'no_display'))) %>%
   ggplot() +
   geom_tile(aes(x = year_month, y = forcats::fct_rev(police_label), fill = file_present),
-            colour = "white") +
+            colour = "transparent") +
   facet_wrap(~series, ncol = 1, scale = 'free_y',
              labeller = as_labeller(c(street = "Street", 
                                       outcomes = "Outcomes", 
@@ -111,7 +111,7 @@ archive_contents %>%
         panel.spacing = unit(0.1,'lines')) +   #only v small spaces between facets
   guides(fill=guide_legend(nrow = 1)) +
 # coord_cartesian(clip="off") +
-labs(caption = "Each tile represents one month of data from one (of three) data series and one police force\\. \nThe colour of the tile indictates whether the data is present or absent in the folders it\nshould be in:") 
+labs(caption = "Each tile represents one month of data from one (of three) data series and one police force. \nThe colour of the tile indictates whether the data is present or absent in the folders it\nshould be in:") 
 
 # plot_missing_byfile
 

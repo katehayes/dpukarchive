@@ -4,10 +4,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-[data.police.uk](https://data.police.uk) makes lots of police data
-available for public use. It offers an API - but, on exploration, it
-seems like the API only gives access to data back as far as 2021. The
-site also has an [‘archive’
+Lots of police data is made available for public use at
+[data.police.uk](https://data.police.uk). The site offers an API - but,
+on exploration, it seems like the API only gives access to data back as
+far as 2021. The site also has an [‘archive’
 page](https://data.police.uk/data/archive/) - the archive hosts data
 from Dec 2010 onwards. <br>
 
