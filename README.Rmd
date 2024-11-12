@@ -15,7 +15,28 @@ Plan: to try develop a package that makes interacting with the UK police data ar
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc.results='hide',fig.keep='all'-->
  
 ## Understanding what data is present in the archive
-Checking each folder for each file.
+Have checked the contents of each zipped folder on the page, and recorded that information in a datatable. This info will feed into package functions. 
+
+```{r archive_contents, echo = F, message = F}
+library(dplyr)
+library(magrittr)
+
+load("data/archive_contents.Rda") 
+
+archive_contents %>% 
+  mutate(year_month = paste(year, month, sep="-")) %>% 
+  group_by(folder) %>% 
+  mutate(folder_min = min(year_month[contains == T]),
+         folder_max = max(year_month[contains == T])) %>% 
+  ungroup() %>% 
+  mutate(should_contain = ifelse(year_month >= folder_min & year_month <= folder_max,
+                          T, F)) %>% 
+  select(file_name, folder, should_contain, contains) %>% 
+  head()
+
+```
+ 
+
 
 ```{r availability-plot, echo = F, message = F, dev='png', dpi = 1000, dev.args = list(bg = 'transparent')}
 library(dplyr)

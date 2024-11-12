@@ -26,7 +26,19 @@ data archive easier.
 
 ## Understanding what data is present in the archive
 
-Checking each folder for each file.
+Have checked the contents of each zipped folder on the page, and
+recorded that information in a datatable. This info will feed into
+package functions.
+
+    ## # A tibble: 6 × 4
+    ##   file_name                                      folder  should_contain contains
+    ##   <chr>                                          <chr>   <lgl>          <lgl>   
+    ## 1 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… TRUE           TRUE    
+    ## 2 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE   
+    ## 3 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE   
+    ## 4 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE   
+    ## 5 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE   
+    ## 6 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE
 
 ![](README_files/figure-gfm/availability-plot-1.png)<!-- -->
 
