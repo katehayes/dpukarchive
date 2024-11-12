@@ -3,12 +3,12 @@ output: github_document
 ---
 
 
-# dpukarchive
+# dpukarchive: a package for working with the data.police.uk archive
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-[Data.police.uk](https://data.police.uk) makes lots of police data available for public use. It offers an API - but, on exploration, it seems like the API only gives access to data back as far as 2021. The site also has an ['archive' page](https://data.police.uk/data/archive/) - the archive hosts data from Dec 2010 onwards. <br>
+[data.police.uk](https://data.police.uk) makes lots of police data available for public use. It offers an API - but, on exploration, it seems like the API only gives access to data back as far as 2021. The site also has an ['archive' page](https://data.police.uk/data/archive/) - the archive hosts data from Dec 2010 onwards. <br>
 
 However, the archive is difficult to use. It hosts a number of zipped folders, available for download. Each zipped folder contains a number of subfolders, which contain one month's worth of data. For every month, there should be one csv for each police force, for each data series (crime, outcome, stop & search data), though some are missing. In sum, there are lots of files inside folders inside folders, and to extract the particular data files you want to use presently involves downloading and manually searching through many files you don't want. <br>
 
@@ -17,7 +17,7 @@ Plan: to try develop a package that makes interacting with the UK police data ar
  
 ## Understanding what data is present in the archive
 
-```{r availability-plot, echo = F, message = F, dev='png', dev.args = list(bg = 'transparent')}
+```{r availability-plot, echo = F, message = F, dev='png', dpi = 500, dev.args = list(bg = 'transparent')}
 library(dplyr)
 library(magrittr)
 library(ggplot2)
@@ -30,7 +30,7 @@ force_list <- httr::GET("https://data.police.uk/api/forces") %>%
     if_else(stringr::str_detect(v, 'no_display'), '', v)
   }
 
-load("data/archive_contents.rda")
+load("data/archive_contents.Rda")
 
 # lets do ever, always, mever
 archive_contents %>% 
@@ -100,7 +100,7 @@ archive_contents %>%
         legend.text = element_text(size = 12,
                                    colour = "white"),
         # panel.background = element_rect(fill = NA, color = "black"),
-        # plot.margin = unit(c(1,9,0.7,0.8), "lines"),
+        plot.margin = unit(c(1,1,1,1), "lines"),
         # plot.caption = element_text(hjust=1.137,
         #                             vjust = 100,
         #                             size=rel(1)),
@@ -114,8 +114,6 @@ archive_contents %>%
 labs(caption = "Each tile represents one month of data from one (of three) data series and one police force\\. \nThe colour of the tile indictates whether the data is present or absent in the folders it\nshould be in:") 
 
 # plot_missing_byfile
-
-# ggsave(filename = "plots/plot_hmo_pc_time.png", plot_hmo_pc_time) 
 
 ```
 

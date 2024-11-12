@@ -1,10 +1,10 @@
 
-# dpukarchive
+# dpukarchive: a package for working with the data.police.uk archive
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-[Data.police.uk](https://data.police.uk) makes lots of police data
+[data.police.uk](https://data.police.uk) makes lots of police data
 available for public use. It offers an API - but, on exploration, it
 seems like the API only gives access to data back as far as 2021. The
 site also has an [‘archive’
