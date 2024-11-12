@@ -22,11 +22,11 @@ and manually searching through many files you don’t want. <br>
 
 Plan: to try develop a package that makes interacting with the UK police
 data archive easier.
-<!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
+<!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc.results='hide',fig.keep='all'-->
 
-## Understanding the contents of the police data archive
+## Understanding what data is present in the archive
 
-![availability-plot.](README_files/figure-gfm/availability-plot-1.png)
+![](README_files/figure-gfm/availability-plot-1.png)<!-- -->
 
 ## Extracting data from the police data archive
 
