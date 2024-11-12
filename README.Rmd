@@ -12,12 +12,12 @@ output: github_document
 
 However, the archive is difficult to use. It hosts a number of zipped folders, available for download. Each zipped folder contains a number of subfolders, which contain one month's worth of data. For every month, there should be one csv for each police force, for each data series (crime, outcome, stop & search data), though some are missing. In sum, there are lots of files inside folders inside folders, and to extract the particular data files you want to use presently involves downloading and manually searching through many files you don't want. <br>
 
-Plan: to try develop a package with functions that make interacting with the UK police data archive easier. 
+Plan: to try develop a package that makes interacting with the UK police data archive easier. 
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
  
 ## Understanding the contents of the archive
  
-```{r availability-plot, include = F, dev='png', fig.show='hide'}
+```{r availability-plot, include = F, dev='png', background='transparent', fig.show='hide'}
 library(dplyr)
 library(magrittr)
 library(ggplot2)
@@ -85,18 +85,15 @@ archive_contents %>%
                    breaks = delete_no_display,
                    # labels = "",
                    expand = c(0,0)) +
-  theme(strip.background = element_blank(), 
-        # strip.text = element_text(angle = 0, hjust = 0),
+  theme(strip.background = element_rect(fill='transparent'),
+        strip.text = element_text(colour = "white"),
         # strip.placement = "outside",
-        plot.background = element_blank(),
-        legend.background =  element_blank(),
+        plot.background = element_rect(fill='transparent'),
+        panel.background = element_rect(fill='transparent'),
+        legend.background =  element_rect(fill='transparent'),
         axis.line.x.bottom = element_line(colour = "white"),
         axis.text.y = element_text(size = 7, colour = "white"),
         axis.text.x = element_text(size = 9, colour = "white"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.major.y = element_line(color = "darkgrey", linewidth = 0.4),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
         legend.position = c(0.64, -0.223),
         legend.title = element_blank(),
         legend.key.size = unit(0.5, "lines"),
@@ -128,6 +125,7 @@ labs(caption = "Each tile represents one month of data from one (of three) data 
  
 ## Extracting data from the police data archive
 
+Function arc_extract. Should be able to specify police force, data series, and time span, and have a dataframe returned efficiently. 
 
 ```{r example}
 ## library(dpukarchive)

@@ -20,8 +20,8 @@ there are lots of files inside folders inside folders, and to extract
 the particular data files you want to use presently involves downloading
 and manually searching through many files you don’t want. <br>
 
-Plan: to try develop a package with functions that make interacting with
-the UK police data archive easier.
+Plan: to try develop a package that makes interacting with the UK police
+data archive easier.
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
 
 ## Understanding the contents of the archive
@@ -29,6 +29,9 @@ the UK police data archive easier.
 ![availability-plot.](README_files/figure-gfm/availability-plot-1.png)
 
 ## Extracting data from the police data archive
+
+Function arc_extract. Should be able to specify police force, data
+series, and time span, and have a dataframe returned efficiently.
 
 ``` r
 ## library(dpukarchive)
