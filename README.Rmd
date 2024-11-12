@@ -15,9 +15,10 @@ However, the archive is difficult to use. It hosts a number of zipped folders, a
 Plan: to try develop a package that makes interacting with the UK police data archive easier. 
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
  
-## Understanding the contents of the archive
- 
-```{r availability-plot, include = F, dev='png', background='transparent', fig.show='hide'}
+## Understanding the contents of the police data archive
+
+
+```{r availability-plot, include = F, dev='png', dev.args = list(bg = 'transparent'), fig.show='hide'}
 library(dplyr)
 library(magrittr)
 library(ggplot2)

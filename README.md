@@ -24,7 +24,7 @@ Plan: to try develop a package that makes interacting with the UK police
 data archive easier.
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
 
-## Understanding the contents of the archive
+## Understanding the contents of the police data archive
 
 ![availability-plot.](README_files/figure-gfm/availability-plot-1.png)
 
