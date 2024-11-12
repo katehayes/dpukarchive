@@ -26,6 +26,8 @@ data archive easier.
 
 ## Understanding what data is present in the archive
 
+Checking each folder for each file.
+
 ![](README_files/figure-gfm/availability-plot-1.png)<!-- -->
 
 ## Extracting data from the police data archive
