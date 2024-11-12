@@ -88,10 +88,11 @@ archive_contents %>%
   theme(strip.background = element_blank(), 
         # strip.text = element_text(angle = 0, hjust = 0),
         # strip.placement = "outside",
-        plot.background = element_rect(fill = "white"),
+        plot.background = element_blank(),
         legend.background =  element_blank(),
-        axis.line.x.bottom = element_line(colour = "black"),
-        axis.text.y = element_text(size = 7),
+        axis.line.x.bottom = element_line(colour = "white"),
+        axis.text.y = element_text(size = 7, colour = "white"),
+        axis.text.x = element_text(size = 9, colour = "white"),
         panel.grid.major.x = element_blank(),
         panel.grid.major.y = element_line(color = "darkgrey", linewidth = 0.4),
         panel.grid.minor.x = element_blank(),
@@ -99,15 +100,17 @@ archive_contents %>%
         legend.position = c(0.64, -0.223),
         legend.title = element_blank(),
         legend.key.size = unit(0.5, "lines"),
-        legend.text = element_text(size = 12),
+        legend.text = element_text(size = 12,
+                                   colour = "white"),
         # panel.background = element_rect(fill = NA, color = "black"),
         # plot.margin = unit(c(1,9,0.7,0.8), "lines"),
         # plot.caption = element_text(hjust=1.137,
         #                             vjust = 100,
         #                             size=rel(1)),
-        plot.caption = element_text(hjust=0,
-                                    vjust=0,
-                                    size=12),
+        plot.caption = element_text(hjust = 0,
+                                    vjust = 0,
+                                    size = 12,
+                                    colour = "white"),
         panel.spacing = unit(0.1,'lines')) +   #only v small spaces between facets
   guides(fill=guide_legend(nrow = 1)) +
 # coord_cartesian(clip="off") +
@@ -123,7 +126,7 @@ labs(caption = "Each tile represents one month of data from one (of three) data 
 ![availability-plot.](`r knitr::fig_chunk('availability-plot', 'png')`)
  
  
-## Extracting data
+## Extracting data from the police data archive
 
 
 ```{r example}

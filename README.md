@@ -28,7 +28,7 @@ the UK police data archive easier.
 
 ![availability-plot.](README_files/figure-gfm/availability-plot-1.png)
 
-## Extracting data
+## Extracting data from the police data archive
 
 ``` r
 ## library(dpukarchive)
