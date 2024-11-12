@@ -2,16 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-#knitr::opts_chunk$set(
-  #collapse = TRUE,
-  #comment = "#>",
-  #fig.path = "man/figures/README-",
-  #out.width = "100%"
-#)
-```
 
 # dpukarchive
 
@@ -25,6 +15,123 @@ However, the archive is difficult to use. It hosts a number of zipped folders, a
 Plan: to try develop a package with functions that make interacting with the UK police data archive easier. 
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
  
+## Understanding the contents of the archive
+ 
+```{r availability-plot, include = F, dev='png', fig.show='hide'}
+library(dplyr)
+library(magrittr)
+library(ggplot2)
+
+force_list <- httr::GET("https://data.police.uk/api/forces") %>%
+  httr::content("text") %>% # extract the JSON
+  jsonlite::fromJSON() # convert the JSON string to a list
+
+ delete_no_display <- function(v) {
+    if_else(stringr::str_detect(v, 'no_display'), '', v)
+  }
+
+load("data/archive_contents.rda")
+
+# lets do ever, always, mever
+archive_contents %>% 
+  mutate(year_month = paste(year, month, sep="-")) %>% 
+  group_by(folder) %>% 
+  mutate(folder_min = min(year_month[contains == T]),
+         folder_max = max(year_month[contains == T])) %>% 
+  ungroup() %>% 
+  mutate(should_contain = ifelse(year_month >= folder_min & year_month <= folder_max,
+                          T, F)) %>% 
+  filter(should_contain == T) %>% 
+  group_by(file_name) %>% 
+  mutate(file_present = if_else(all(contains == T), "never missing.", if_else(all(contains == F), "always missing;", "sometimes missing;"))) %>% 
+  mutate(file_present = factor(file_present, levels = c("always missing;", "sometimes missing;", "never missing."))) %>% 
+  ungroup() %>% 
+  distinct(series, police, file_name, file_present) %>% 
+  mutate(year_month = substr(file_name, 1, 7),
+         series = factor(series, levels = c("street", "outcomes", "stop-and-search"))) %>% 
+  left_join(force_list %>% 
+              rename(police = id)) %>% 
+  mutate(police_label = ifelse(police == "metropolitan" & series == "stop-and-search", name, paste0(name, 'no_display')),
+         police_label = ifelse(police == "avon-and-somerset" & series == "stop-and-search", name, police_label),
+         police_label = ifelse(police == "cheshire" & series == "stop-and-search", name, police_label),
+         police_label = ifelse(police == "derbyshire" & series == "stop-and-search", name, police_label),
+         police_label = ifelse(police == "greater-manchester" & series == "stop-and-search", name, police_label),
+         police_label = ifelse(police == "west-midlands" & series == "stop-and-search", name, police_label)) %>% 
+  # mutate(police_label = ifelse(series == "street", name, paste0(name, 'no_display'))) %>%
+  ggplot() +
+  geom_tile(aes(x = year_month, y = forcats::fct_rev(police_label), fill = file_present),
+            colour = "white") +
+  facet_wrap(~series, ncol = 1, scale = 'free_y',
+             labeller = as_labeller(c(street = "Street", 
+                                      outcomes = "Outcomes", 
+                                      `stop-and-search` = "Stop & search")), 
+             strip.position = "left"
+             ) +
+  # scale_fill_manual(values = c("#20c45b", "#fc4724", "#fc7d24"))+
+  scale_fill_manual(values = c("#adabaa", "#fc7d24", "#fc4724"))+
+  scale_x_discrete(name = "",
+                   breaks = c("2011-01", "2012-01", "2013-01",
+                              "2014-01", "2015-01", "2016-01", "2017-01", "2018-01",
+                              "2019-01", "2020-01", "2021-01", "2022-01",
+                              "2023-01", "2024-01"),
+                   labels = c("2011", "2012", "2013", 
+                              "2014", "2015", "2016", "2017", "2018",
+                              "2019", "2020", "2021", "2022",
+                              "2023", "2024"),
+                   expand = c(0,0)) +
+  scale_y_discrete(position = "right",
+                   name = "",
+                   labels = delete_no_display,
+                   breaks = delete_no_display,
+                   # labels = "",
+                   expand = c(0,0)) +
+  theme(strip.background = element_blank(), 
+        # strip.text = element_text(angle = 0, hjust = 0),
+        # strip.placement = "outside",
+        plot.background = element_rect(fill = "white"),
+        legend.background =  element_blank(),
+        axis.line.x.bottom = element_line(colour = "black"),
+        axis.text.y = element_text(size = 7),
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(color = "darkgrey", linewidth = 0.4),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        legend.position = c(0.64, -0.223),
+        legend.title = element_blank(),
+        legend.key.size = unit(0.5, "lines"),
+        legend.text = element_text(size = 12),
+        # panel.background = element_rect(fill = NA, color = "black"),
+        # plot.margin = unit(c(1,9,0.7,0.8), "lines"),
+        # plot.caption = element_text(hjust=1.137,
+        #                             vjust = 100,
+        #                             size=rel(1)),
+        plot.caption = element_text(hjust=0,
+                                    vjust=0,
+                                    size=12),
+        panel.spacing = unit(0.1,'lines')) +   #only v small spaces between facets
+  guides(fill=guide_legend(nrow = 1)) +
+# coord_cartesian(clip="off") +
+labs(caption = "Each tile represents one month of data from one (of three) data series and one police force\\. \nThe colour of the tile indictates whether the data is present or absent in the folders it\nshould be in:") 
+
+# plot_missing_byfile
+
+# ggsave(filename = "plots/plot_hmo_pc_time.png", plot_hmo_pc_time) 
+
+```
+
+
+![availability-plot.](`r knitr::fig_chunk('availability-plot', 'png')`)
+ 
+ 
+## Extracting data
+
+
+```{r example}
+## library(dpukarchive)
+## basic example code
+```
+ 
+ 
 ## Installation
 
 You can install the development version of dpukarchive from [GitHub](https://github.com/) with:
@@ -34,14 +141,7 @@ You can install the development version of dpukarchive from [GitHub](https://git
 # devtools::install_github("katehayes/dpukarchive")
 ```
 
-## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-## library(dpukarchive)
-## basic example code
-```
 
 
 

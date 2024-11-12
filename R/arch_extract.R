@@ -75,4 +75,4 @@ arch_extract <- function(police_force = ".", data_series = ".", month_min = ".",
 
 }
 
-check <- arch_extract(police_force = "west-midlands", data_series = "stop-and-search", month_min = "2015-01", month_max = "2020-08")
+# check <- arch_extract(police_force = "west-midlands", data_series = "stop-and-search", month_min = "2015-01", month_max = "2020-08")

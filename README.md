@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # dpukarchive
 
 <!-- badges: start -->
@@ -26,6 +24,17 @@ Plan: to try develop a package with functions that make interacting with
 the UK police data archive easier.
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc. -->
 
+## Understanding the contents of the archive
+
+![availability-plot.](README_files/figure-gfm/availability-plot-1.png)
+
+## Extracting data
+
+``` r
+## library(dpukarchive)
+## basic example code
+```
+
 ## Installation
 
 You can install the development version of dpukarchive from
@@ -34,13 +43,4 @@ You can install the development version of dpukarchive from
 ``` r
 # install.packages("devtools")
 # devtools::install_github("katehayes/dpukarchive")
-```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-## library(dpukarchive)
-## basic example code
 ```
