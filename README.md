@@ -27,7 +27,10 @@ data archive easier.
 ## Understanding what data is present in the archive
 
 Have checked the contents of each zipped folder on the page, and
-recorded that information in a datatable. This info will feed into
+recorded that information in a table (code that produces the table is in
+file
+[archive_contents.R](https://github.com/katehayes/dpukarchive/blob/main/data-raw/archive_contents.R)
+and the table itself is in the data folder). This info will feed into
 package functions.
 
     ## # A tibble: 6 × 4

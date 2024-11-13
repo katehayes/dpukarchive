@@ -15,7 +15,7 @@ Plan: to try develop a package that makes interacting with the UK police data ar
 <!-- I'm trying to take stock of the archive - figure out what data files are absent/present/present in multiple versions, how to interact with the archive in the most efficient way, etc.results='hide',fig.keep='all'-->
  
 ## Understanding what data is present in the archive
-Have checked the contents of each zipped folder on the page, and recorded that information in a datatable. This info will feed into package functions. 
+Have checked the contents of each zipped folder on the page, and recorded that information in a table (code that produces the table is in file [archive_contents.R](https://github.com/katehayes/dpukarchive/blob/main/data-raw/archive_contents.R) and the table itself is in the data folder). This info will feed into package functions. 
 
 ```{r archive_contents, echo = F, message = F}
 library(dplyr)
