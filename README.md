@@ -51,17 +51,6 @@ presence/absence of the relevant files across the relevant folders.
 Here’s an example of the plot for Wiltshire’s stop and search data for
 the months of Jan 2019 to June 2024.
 
-    ## 
-    ## ── R CMD build ─────────────────────────────────────────────────────────────────
-    ##      checking for file ‘/private/var/folders/lg/0bwf5znx08zgdprvsksvswxm0000gn/T/RtmpFg5Ezl/remotes72213644307d/katehayes-dpukarchive-8f1ac5c/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/lg/0bwf5znx08zgdprvsksvswxm0000gn/T/RtmpFg5Ezl/remotes72213644307d/katehayes-dpukarchive-8f1ac5c/DESCRIPTION’
-    ##   ─  preparing ‘dpukarchive’:
-    ##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-    ##   ─  checking for LF line-endings in source and make files and shell scripts
-    ##   ─  checking for empty or unneeded directories
-    ##   ─  building ‘dpukarchive_0.0.0.9000.tar.gz’
-    ##      
-    ## 
-
 ![](README_files/figure-gfm/fs-plot-1.png)<!-- -->
 
 ## Extracting data from the police data archive
