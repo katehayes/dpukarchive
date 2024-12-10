@@ -1,8 +1,13 @@
 
-#' @import dplyr
-#' @import tidyr
 
-
+#' Adds column detailing whether folder should contain file
+#'
+#' @param df A tibble.
+#'
+#' @return A tibble.
+#' @export
+#'
+#' @examples
 should_contain <- function(df = archive_contents) {
 
   df %>%
@@ -18,6 +23,14 @@ should_contain <- function(df = archive_contents) {
 
 }
 
+#' Adds column detailing file status
+#'
+#' @param df A tibble.
+#'
+#' @return A tibble.
+#' @export
+#'
+#' @examples
 file_status <- function(df) {
 
   df %>%
@@ -32,6 +45,18 @@ file_status <- function(df) {
 # you should be able to choose all different tests. and if conducted save their outputs in a sensible big list.
 
 
+#' Plots file presence/absence in folders
+#'
+#' @param police_force A string.
+#' @param data_series A string.
+#' @param month_min A string.
+#' @param month_max A string.
+#'
+#' @return A ggplot object.
+#' @export
+#'
+#' @examples
+#' fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
 fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
 
   text_colour <- "black"

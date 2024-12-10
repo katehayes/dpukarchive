@@ -51,7 +51,7 @@ presence/absence of the relevant files across the relevant folders.
 
 ## Extracting data from the police data archive
 
-Function arc_extract. Should be able to specify police force, data
+Function arc_extract – should be able to specify police force, data
 series, and time span, and have a dataframe returned efficiently.
 
 ``` r
