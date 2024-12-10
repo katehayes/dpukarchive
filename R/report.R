@@ -81,7 +81,7 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
                    panel.background = ggplot2::element_rect(fill='transparent'),
                    legend.background =  ggplot2::element_rect(fill='transparent'),
                    axis.ticks = ggplot2::element_line(colour = text_colour),
-                   panel.grid.major = ggplot2::element_line(colour="darkgray"),
+                   panel.grid.major = ggplot2::element_line(colour="darkgray", size = 0.5),
                    axis.text.y = ggplot2::element_text(size = 7, colour = text_colour),
                    axis.text.x = ggplot2::element_text(size = 7, colour = text_colour, angle=90),
                    axis.title.x = ggplot2::element_text(size = 11, colour = text_colour),
