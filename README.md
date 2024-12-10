@@ -48,6 +48,19 @@ package functions.
 For more details use function fs_report - specify police force, data
 series, and time span, and the function returns a plot summarising the
 presence/absence of the relevant files across the relevant folders.
+Here’s an example of the plot for Wiltshire’s stop and search data for
+the months of Jan 2019 to June 2024.
+
+    ## 
+    ## ── R CMD build ─────────────────────────────────────────────────────────────────
+    ##      checking for file ‘/private/var/folders/lg/0bwf5znx08zgdprvsksvswxm0000gn/T/Rtmpf82ku6/remotes70c96f23c964/katehayes-dpukarchive-4b0a460/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/lg/0bwf5znx08zgdprvsksvswxm0000gn/T/Rtmpf82ku6/remotes70c96f23c964/katehayes-dpukarchive-4b0a460/DESCRIPTION’
+    ##   ─  preparing ‘dpukarchive’:
+    ##    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+    ##   ─  checking for LF line-endings in source and make files and shell scripts
+    ##   ─  checking for empty or unneeded directories
+    ##   ─  building ‘dpukarchive_0.0.0.9000.tar.gz’
+    ##      
+    ## 
 
 ![](README_files/figure-gfm/fs-plot-1.png)<!-- -->
 

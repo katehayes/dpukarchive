@@ -53,7 +53,7 @@ file_status <- function(df) {
 #' fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
 fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
 
-  text_colour <- "black"
+  text_colour <- "white"
 
   # folders along x axis files along y axis.
 
