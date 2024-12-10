@@ -3,16 +3,55 @@
 #' @import tidyr
 
 
+get_force_list <- function() {
+
+  httr::GET("https://data.police.uk/api/forces") %>%
+    httr::content("text") %>% # extract the JSON
+    jsonlite::fromJSON() # convert the JSON string to a list
+
+}
+
+
+
+
+
+# function that can go in any of the other functions, checks conditions
+# ie only name one police for, one data series, that they are part of the lists
+# that the months are in range, month min smaller than month max and so on.
+
+
+
+# subset?
+arch_filter <- function(df = archive_contents, police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
+
+  df %>%
+    mutate(year_month = paste(year, month, sep="-")) %>%
+    filter(police == police_force,
+           series == data_series,
+           year_month >= month_min,
+           year_month <= month_max) %>%
+    select(-year_month)
+
+}
+
+
+
+
 # need to write an option for a report
 # essentially, which folders were used for which files
 # maybe also if anything is missing, if any of the files are missing in places
 arch_extract <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
 
+  # op <- archive_contents %>%
+  #   filter(police == police_force, series == data_series) %>%
+  #   mutate(year_month = paste(year, month, sep="-")) %>%
+  #   filter(year_month >= month_min,
+  #          year_month <= month_max) %>%
+  #   filter(contains == T) %>%
+  #   select(file_name, folder)
+
   op <- archive_contents %>%
-    filter(police == police_force, series == data_series) %>%
-    mutate(year_month = paste(year, month, sep="-")) %>%
-    filter(year_month >= month_min,
-           year_month <= month_max) %>%
+    arch_filter(police_force, data_series, month_min, month_max) %>%
     filter(contains == T) %>%
     select(file_name, folder)
 

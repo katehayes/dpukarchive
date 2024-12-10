@@ -41,5 +41,5 @@ archive_contents <- archive_contents %>%
                values_to = "contains")
 
 
-usethis::use_data(archive_contents, overwrite = TRUE)
-
+# usethis::use_data(archive_contents, overwrite = TRUE)
+# usethis::use_data(archive_contents, internal = TRUE)
