@@ -141,13 +141,14 @@ labs(caption = "Each tile represents one month of data from one (of three) data 
 
 For more details use function fs_report - specify police force, data series, and time span, and the function returns a plot summarising the presence/absence of the relevant files across the relevant folders.
 
-```{r fs-plot, echo = F, message = F, dev='png', dpi = 1000, dev.args = list(bg = 'transparent')}
+```{r fs-plot, echo = F, message = F}
 
-# devtools::install_github("katehayes/dpukarchive")
-# library(dpukarchive)
-# 
-# dpukarchive::fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
+devtools::install_github("katehayes/dpukarchive")
+library(dpukarchive)
 
+plt <- dpukarchive:::fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
+
+plt
 ```
 
 ## Extracting data from the police data archive

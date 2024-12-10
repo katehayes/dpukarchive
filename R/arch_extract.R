@@ -58,21 +58,15 @@ arch_filter <- function(df = archive_contents, police_force = ".", data_series =
 # maybe also if anything is missing, if any of the files are missing in places
 
 #' Extract data from archive efficiently
-#'
 #' @param police_force A string.
 #' @param data_series A string.
 #' @param month_min A string.
 #' @param month_max A string.
-#'
 #' @import dplyr
 #' @import tidyr
 #'
 #' @return A tibble.
 #' @export
-#'
-#' @examples
-#' arch_extract(police_force = "west-midlands", data_series = "stop-and-search", month_min = "2015-01", month_max = "2020-08")
-#' arch_extract(police_force = "greater-manchester", data_series = "outcomes", month_min = "2012-12", month_max = "2013-01")
 arch_extract <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
 
   # op <- archive_contents %>%

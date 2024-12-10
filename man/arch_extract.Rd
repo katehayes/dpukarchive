@@ -26,7 +26,3 @@ A tibble.
 \description{
 Extract data from archive efficiently
 }
-\examples{
-arch_extract(police_force = "west-midlands", data_series = "stop-and-search", month_min = "2015-01", month_max = "2020-08")
-arch_extract(police_force = "greater-manchester", data_series = "outcomes", month_min = "2012-12", month_max = "2013-01")
-}
