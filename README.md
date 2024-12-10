@@ -48,8 +48,8 @@ package functions.
 For more details use function fs_report - specify police force, data
 series, and time span, and the function returns a plot summarising the
 presence/absence of the relevant files across the relevant folders.
-Here’s an example of the plot for Wiltshire’s stop and search data for
-the months of Jan 2019 to June 2024.
+Here’s an example of the plot for Wiltshire Police Force’s stop and
+search data for the months of Jan 2019 to June 2024.
 
 ![](README_files/figure-gfm/fs-plot-1.png)<!-- -->
 
