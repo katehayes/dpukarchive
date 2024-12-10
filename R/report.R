@@ -67,7 +67,7 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
            file_name = substr(file_name, 1, 7)) %>%
     ggplot2::ggplot() +
     ggplot2::geom_tile(ggplot2::aes(x = folder, y = forcats::fct_rev(file_name), fill = contains),
-                       colour = "white") +
+                       colour = "black") +
     ggplot2::scale_fill_manual(values = c("#c44920", "#20c452")) +
     ggplot2::scale_y_discrete(position = "left",
                               name = "File",
@@ -78,10 +78,10 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
     ggplot2::theme(strip.background = ggplot2::element_rect(fill='transparent'),
                    strip.text = ggplot2::element_text(colour = text_colour),
                    plot.background = ggplot2::element_rect(fill='transparent'),
-                   panel.background = ggplot2::element_rect(fill="lightgray"),
+                   panel.background = ggplot2::element_rect(fill='transparent'),
                    legend.background =  ggplot2::element_rect(fill='transparent'),
                    axis.ticks = ggplot2::element_line(colour = text_colour),
-                   panel.grid.major = ggplot2::element_line(colour="lightgray"),
+                   panel.grid.major = ggplot2::element_line(colour="darkgray"),
                    axis.text.y = ggplot2::element_text(size = 7, colour = text_colour),
                    axis.text.x = ggplot2::element_text(size = 7, colour = text_colour, angle=90),
                    axis.title.x = ggplot2::element_text(size = 11, colour = text_colour),
