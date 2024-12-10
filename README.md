@@ -45,6 +45,10 @@ package functions.
 
 ![](README_files/figure-gfm/availability-plot-1.png)<!-- -->
 
+For more details use function fs_report - specify police force, data
+series, and time span, and the function returns a plot summarising the
+presence/absence of the relevant files across the relevant folders.
+
 ## Extracting data from the police data archive
 
 Function arc_extract. Should be able to specify police force, data
