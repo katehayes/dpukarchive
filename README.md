@@ -43,7 +43,7 @@ package functions.
     ## 5 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE   
     ## 6 2024-08/2024-08-avon-and-somerset-outcomes.csv zip202… FALSE          FALSE
 
-![](README_files/figure-gfm/availability-plot-1.png)<!-- -->
+![high_level_file_status](man/figures/high_level_file_status.png)
 
 Function fs_report supplies more details about a given police force,
 data series, and time span. When police force, data series, and time
@@ -52,7 +52,7 @@ presence/absence of the relevant files across the relevant folders. The
 plot additionally highlights which folders would be downloaded/ files
 would be extracted by the function arc_extract(). Here’s an example:
 
-![](README_files/figure-gfm/fs-plot-1.png)<!-- -->
+![file_status_example_plot](man/figures/file_status_example_plot.png)
 
 ## Extracting data from the police data archive
 

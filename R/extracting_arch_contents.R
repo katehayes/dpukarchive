@@ -68,8 +68,14 @@ choose_files <- function(police_force = ".", data_series = ".", month_min = ".",
 
 
 
-# check <- choose_files(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06", option = "table")
+# check <- choose_files(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
+# #
+# note_list <- list()
+# for (i in 1:length(check)) {
 #
+# note_list[[i]] <- paste("Folder: ", names(url_list)[i], "\nFiles: ")
+#
+# }
 
 
 #' Takes a list of files, extracts them from archive
