@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' choose_files(police_force = "dorset", data_series = "street", month_min = "2017-03", month_max = "2017-06")
-choose_files <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
+choose_files <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".", option = "list") {
 
   df <- archive_contents %>%
     arch_filter(police_force, data_series, month_min, month_max, option = contains) %>%
@@ -49,11 +49,17 @@ choose_files <- function(police_force = ".", data_series = ".", month_min = ".",
     mutate(selected = if_else(folder == max(folder[present == 1]), 1, 0)) %>%  # select most recent
     ungroup() %>%
     filter(selected == 1) %>%
-    select(!c(present, selected)) %>%
-    mutate(folder = substr(folder, 4, nchar(folder)),
-           folder = paste("https://data.police.uk/data/archive/", folder, ".zip", sep = "")) %>%
-    with(split(file_name,
-               factor(folder, levels = unique(folder))))
+    select(!c(present, selected))
+
+  if(option != "table") {
+
+    url_list <- url_list %>%
+      mutate(folder = substr(folder, 4, nchar(folder)),
+             folder = paste("https://data.police.uk/data/archive/", folder, ".zip", sep = "")) %>%
+      with(split(file_name,
+                 factor(folder, levels = unique(folder))))
+
+  }
 
   return(url_list)
 
@@ -62,8 +68,8 @@ choose_files <- function(police_force = ".", data_series = ".", month_min = ".",
 
 
 
-
-
+# check <- choose_files(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06", option = "table")
+#
 
 
 #' Takes a list of files, extracts them from archive
