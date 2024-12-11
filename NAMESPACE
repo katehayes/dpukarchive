@@ -2,10 +2,8 @@
 
 export("%>%")
 export(arch_extract)
-export(file_status)
 export(fs_graph)
 export(get_force_list)
-export(should_contain)
 import(dplyr)
 import(tidyr)
 importFrom(magrittr,"%>%")
