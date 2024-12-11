@@ -47,7 +47,8 @@ get_ds_name <- function(ds_code) {
 }
 
 
-# get_pf_name(pf_code = "metropolitan")
+# would be nice if there was one horizontal line for folders indicating which got downloaded
+# and a vertical line for files? indicating which are present always, sometimes, never??
 
 #' Plots file presence/absence in folders
 #' @param police_force A string.
@@ -58,7 +59,7 @@ get_ds_name <- function(ds_code) {
 #' @export
 #' @examples
 #' fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
-fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".") {
+fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", month_max = ".", tile_colours = c("#bdbebd", "#8bce7b", "#17a420")) {
 
   # pf_name <- get_pf_name(police_force)
   # ds_name <- get_ds_name(data_series)
@@ -68,17 +69,23 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
 
   # folders along x axis files along y axis.
 
-  report <- should_contain() %>%
+  report <- archive_contents %>%
+    should_contain() %>%
     arch_filter(police_force, data_series, month_min, month_max, option = should_contain) %>%
     select(file_name, folder, contains) %>%
     mutate(contains = if_else(contains == T, "Present", "Absent")) %>%
     # complete(file_name, folder, fill = list(contains = "outside range")) %>%
+    left_join(choose_files(police_force, data_series, month_min, month_max, option = "table") %>%
+                mutate(selected = 1)) %>%
+    mutate(contains = if_else(!(is.na(selected)), "Present - Selected", contains)) %>%
     mutate(folder = substr(folder, 4, 10),
            file_name = substr(file_name, 1, 7)) %>%
     ggplot2::ggplot() +
     ggplot2::geom_tile(ggplot2::aes(x = folder, y = forcats::fct_rev(file_name), fill = contains),
                        colour = "black") +
-    ggplot2::scale_fill_manual(values = c("#c44920", "#20c452")) +
+    ggplot2::coord_equal() +
+    # ggplot2::scale_fill_manual(values = c("#c44920", "#20c452")) +
+    ggplot2::scale_fill_manual(values = tile_colours) +
     ggplot2::scale_y_discrete(position = "left",
                               name = "File",
                               expand = c(0,0)) +
@@ -111,9 +118,11 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
 
 }
 
-# check <- fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06")
-#
-# check
+
+#  check <- fs_graph(police_force = "wiltshire", data_series = "stop-and-search", month_min = "2019-01", month_max = "2024-06",
+#                    tile_colours = c("#a4a5a4", "#8bce7b", "#17a420"))
+# # # # #
+#  check
 
 
 # check <- paste("Police force:", get_pf_name("wiltshire"),
