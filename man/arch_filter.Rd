@@ -9,7 +9,8 @@ arch_filter(
   police_force = ".",
   data_series = ".",
   month_min = ".",
-  month_max = "."
+  month_max = ".",
+  option
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ arch_filter(
 \item{month_min}{A string.}
 
 \item{month_max}{A string.}
+
+\item{option}{Either 'contains' or 'should_contain'}
 }
 \value{
 A tibble.

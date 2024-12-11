@@ -1,42 +1,16 @@
-
-
-#' Adds column detailing whether folder should contain file
-#'
-#' @param df A tibble.
+#' Gets list of police forces
 #'
 #' @return A tibble.
 #' @export
-should_contain <- function(df = archive_contents) {
+#'
+#' @examples
+get_force_list <- function() {
 
-  df %>%
-    mutate(year_month = paste(year, month, sep="-")) %>%
-    group_by(folder) %>%
-    mutate(folder_min = min(year_month[contains == T]),
-           folder_max = max(year_month[contains == T])) %>%
-    ungroup() %>%
-    mutate(should_contain = ifelse(year_month >= folder_min & year_month <= folder_max,
-                                   T, F)) %>%
-    select(-c(folder_min, folder_max, year_month))
-  # drop year_month again? drop folder min and max?
+  httr::GET("https://data.police.uk/api/forces") %>%
+    httr::content("text") %>% # extract the JSON
+    jsonlite::fromJSON() # convert the JSON string to a list
 
 }
-
-#' Adds column detailing file status
-#'
-#' @param df A tibble.
-#'
-#' @return A tibble.
-#' @export
-file_status <- function(df) {
-
-  df %>%
-    filter(should_contain == T) %>%
-    group_by(file_name) %>%
-    mutate(file_status = if_else(all(contains == T), "always present", if_else(all(contains == F), "never present", "sometimes present"))) %>%
-    ungroup()
-
-}
-
 
 # you should be able to choose all different tests. and if conducted save their outputs in a sensible big list.
 # https://stackoverflow.com/questions/41582136/r-what-do-you-call-the-and-operators-and-how-do-they-differ
@@ -58,8 +32,7 @@ fs_graph <- function(police_force = ".", data_series = ".", month_min = ".", mon
   # folders along x axis files along y axis.
 
   report <- should_contain() %>%
-    arch_filter(police_force, data_series, month_min, month_max) %>%
-    filter(should_contain == T) %>%
+    arch_filter(police_force, data_series, month_min, month_max, option = "should_contain") %>%
     select(file_name, folder, contains) %>%
     mutate(contains = if_else(contains == T, "Present", "Absent")) %>%
     # complete(file_name, folder, fill = list(contains = "outside range")) %>%

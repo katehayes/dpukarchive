@@ -2,7 +2,6 @@
 
 export("%>%")
 export(arch_extract)
-export(arch_filter)
 export(file_status)
 export(fs_graph)
 export(get_force_list)
