@@ -48,9 +48,8 @@ package functions.
 Function fs_report supplies more details about a given police force,
 data series, and time span. When police force, data series, and time
 span are specified, the function returns a plot summarising the
-presence/absence of the relevant files across the relevant folders. The
-plot additionally highlights which folders would be downloaded/ files
-would be extracted by the function arc_extract(). Here’s an example:
+presence/absence of the relevant files across the relevant folders.
+Here’s an example:
 
 ![file_status_example_plot](man/figures/file_status_example_plot.png)
 
